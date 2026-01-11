@@ -42,3 +42,4 @@ int main() {
     cout << "Median score: " << median << endl;
     return 0;
 }
+
