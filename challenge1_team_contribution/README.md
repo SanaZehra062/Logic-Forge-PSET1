@@ -23,7 +23,7 @@ Time complexity must be O(n)<br>
 Extra space usage should be minimal<br>
 All results fit within a 32-bit integer<br><br>
 
-**Examples**<br><br>
+**Examples**<br>
 
 **Example 1**<br>
 **Input**<br>
@@ -37,7 +37,7 @@ Excluding index 1 → 1 × 3 × 4 = 12<br>
 Excluding index 2 → 1 × 2 × 4 = 8<br>
 Excluding index 3 → 1 × 2 × 3 = 6<br><br>
 
-**Approaches**<br><br>
+**Approaches**<br>
 
 **1. Brute Force Approach**<br><br>
 
