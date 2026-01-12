@@ -69,4 +69,26 @@ Instead of recomputing products repeatedly:<br>
 - Store the product of all elements to the right of each index<br>
 - Multiply both to get the final result<br>
 
-**Step-by-Step E**
+**Step-by-Step Explanation**<br>
+- Create an output array `impact`<br>
+- **First pass (Left Products):** `impact[i]` stores the product of all elements before index `i`<br>
+- **Second pass (Right Products):**<br>
+  - Maintain a variable `rightProduct`<br>
+  - Multiply `impact[i]` by `rightProduct`<br>
+  - Update `rightProduct` by multiplying with `contributions[i]`<br>
+
+**Example**<br>
+For:<br>
+`contributions = [1, 2, 3, 4]`<br>
+- Left products → `[1, 1, 2, 6]`<br>
+- Right products applied → `[24, 12, 8, 6]`<br>
+
+**Time Complexity**<br>
+O(n)<br>
+
+**Space Complexity**<br>
+O(1) extra space (output array excluded)<br>
+
+## Conclusion
+The optimized prefix-suffix approach efficiently solves the problem within linear time and without using division.<br>
+It is the recommended solution for production-level and interview-ready implementations.<br>
