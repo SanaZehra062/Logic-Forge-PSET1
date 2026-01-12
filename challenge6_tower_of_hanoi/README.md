@@ -1,73 +1,75 @@
-# Challenge 6 – Tower of Hanoi Algorithm
+# Challenge 6 – Tower of Hanoi Algorithm<br>
 
-## Problem Overview
-Tower of Hanoi is a mathematical puzzle where we have three rods (**A**, **B**, and **C**) and **N** disks.<br>
-Initially, all the disks are stacked in decreasing value of diameter (the smallest disk is on top) on rod **A**.<br>
-The objective is to move the entire stack to rod **C** while following these rules:<br>
+## Problem Overview<br>
+Tower of Hanoi is a classical mathematical puzzle involving three rods (A, B, and C) and N disks.<br>
+All disks are initially placed on rod A in decreasing order of size, with the smallest disk on top.<br>
+The goal is to move all disks from rod A to rod C while following the defined rules.<br><br>
 
+## Rules<br>
 - Only one disk can be moved at a time<br>
-- Each move consists of taking the upper disk from one stack and placing it on top of another stack<br>
-- No disk may be placed on top of a smaller disk<br>
+- A disk can only be moved if it is the top disk on a rod<br>
+- A larger disk cannot be placed on top of a smaller disk<br><br>
 
-## Function Requirement
-Write a recursive function that:<br>
-- Takes `N` (number of disks), `from_rod`, `to_rod`, and `aux_rod`<br>
-- Prints the moves required to shift all disks from `from_rod` to `to_rod`<br>
+## Function Requirement<br>
+Write a function that:<br>
+- Takes an integer N representing the number of disks<br>
+- Prints all the moves required to transfer the disks from rod A to rod C using rod B as auxiliary<br><br>
 
-## Examples
+## Example Case<br>
+Input: 3<br><br>
 
-**Input:** 2<br>
-**Output:**<br>
-Disk 1 moved from A to B<br>
-Disk 2 moved from A to C<br>
-Disk 1 moved from B to C<br>
-
-**Input:** 3<br>
-**Output:**<br>
+Output:<br>
 Disk 1 moved from A to C<br>
 Disk 2 moved from A to B<br>
 Disk 1 moved from C to B<br>
 Disk 3 moved from A to C<br>
 Disk 1 moved from B to A<br>
 Disk 2 moved from B to C<br>
-Disk 1 moved from A to C<br>
+Disk 1 moved from A to C<br><br>
 
-**Input:** 4<br>
-**Output:**<br>
-Disk 1 moved from A to B<br>
-Disk 2 moved from A to C<br>
-Disk 1 moved from B to C<br>
-Disk 3 moved from A to B<br>
-Disk 1 moved from C to A<br>
-Disk 2 moved from C to B<br>
-Disk 1 moved from A to B<br>
-Disk 4 moved from A to C<br>
-Disk 1 moved from B to C<br>
-Disk 2 moved from B to A<br>
-Disk 1 moved from C to A<br>
-Disk 3 moved from B to C<br>
-Disk 1 moved from A to B<br>
-Disk 2 moved from A to C<br>
-Disk 1 moved from B to C<br>
+## Approaches<br>
 
-## Approach
+### 1. Brute Force Approach (Recursive Simulation)<br>
 
-### Recursive Solution
+#### Idea<br>
+This approach directly simulates the problem by recursively trying all required moves.<br>
+Each disk movement is explicitly generated according to the rules until the destination is reached.<br>
 
-**Idea**<br>
-Use recursion to move disks using the auxiliary rod.<br>
+#### Steps<br>
+- Move N-1 disks from source rod to auxiliary rod<br>
+- Move the largest disk from source rod to destination rod<br>
+- Move N-1 disks from auxiliary rod to destination rod<br>
 
-**Steps**<br>
-1. Shift `N-1` disks from `from_rod` to `aux_rod`, using `to_rod` as helper<br>
-2. Move the last disk from `from_rod` to `to_rod`<br>
-3. Shift `N-1` disks from `aux_rod` to `to_rod`, using `from_rod` as helper<br>
+#### Time Complexity<br>
+O(2^N) — all possible required moves are generated<br>
 
-**Function Definition**<br>
-```python
-def towerOfHanoi(N, from_rod, to_rod, aux_rod):
-    if N == 1:
-        print(f"Disk 1 moved from {from_rod} to {to_rod}")
-        return
-    towerOfHanoi(N-1, from_rod, aux_rod, to_rod)
-    print(f"Disk {N} moved from {from_rod} to {to_rod}")
-    towerOfHanoi(N-1, aux_rod, to_rod, from_rod)
+#### Space Complexity<br>
+O(N) — recursive call stack space<br>
+
+#### Drawback<br>
+This approach is not efficient for large values of N due to exponential growth in moves.<br>
+
+### 2. Optimized Approach (Pattern-Based / Efficient Recursive Strategy)<br>
+
+#### Idea<br>
+Instead of treating the problem as random disk movements, this approach follows a fixed recursive pattern.<br>
+The solution is built using divide-and-conquer, minimizing unnecessary checks and ensuring only valid moves are performed.<br>
+
+#### Steps<br>
+- Break the problem into smaller subproblems of size N-1<br>
+- Solve each subproblem optimally using recursion<br>
+- Combine results to move the largest disk efficiently<br>
+
+#### Time Complexity<br>
+O(2^N) — minimum number of moves required to solve the puzzle<br>
+
+#### Space Complexity<br>
+O(N) — recursion depth remains linear<br>
+
+#### Advantage<br>
+This approach ensures the minimum number of moves and avoids redundant or invalid operations.<br>
+
+## Conclusion<br>
+The Tower of Hanoi problem demonstrates the power of recursion and divide-and-conquer techniques.<br>
+While the brute force approach simulates all moves directly, the optimized approach follows an efficient pattern that guarantees the optimal solution.<br>
+Both approaches ultimately reach the same result but differ in clarity and efficiency of execution.<br>
